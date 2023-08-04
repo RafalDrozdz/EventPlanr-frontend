@@ -1,5 +1,6 @@
 import { EMAIL_REGEX, PASSWORDS_REGEX } from "~/constants";
-import { Register } from "~/schemas";
+import type { Register } from "~/schemas";
+import type { ValidationRule } from "quasar";
 
 function useRegisterForm() {
   const state = reactive<Register>({
@@ -13,27 +14,25 @@ function useRegisterForm() {
 
   const { t } = useI18n();
 
-  const basicValidator = [
-    (value: string) => value?.length || t("register.fieldIsRequired"),
+  const basicValidator: ValidationRule[] = [
+    (value: string) => !!value?.length || t("auth.fieldIsRequired"),
   ];
 
-  const emailValidator = [
+  const emailValidator: ValidationRule[] = [
     ...basicValidator,
-    (email: string) =>
-      EMAIL_REGEX.test(email) || t("register.invalidEmailFormat"),
+    (email: string) => EMAIL_REGEX.test(email) || t("auth.invalidEmailFormat"),
   ];
 
-  const passwordValidator = [
+  const passwordValidator: ValidationRule[] = [
     ...basicValidator,
     (password: string) =>
-      PASSWORDS_REGEX.test(password) || t("register.invalidPasswordFormat"),
+      PASSWORDS_REGEX.test(password) || t("auth.invalidPasswordFormat"),
   ];
 
-  const repeatedPasswordValidator = [
+  const repeatedPasswordValidator: ValidationRule[] = [
     ...basicValidator,
     (repeatedPassword: string) =>
-      repeatedPassword === state.password ||
-      t("register.passwordsMustBeTheSame"),
+      repeatedPassword === state.password || t("auth.passwordsMustBeTheSame"),
   ];
 
   return {

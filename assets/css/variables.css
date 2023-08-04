@@ -1,4 +1,5 @@
 :root {
+  /* spaces */
   --space-xxs: 0.125rem;
   --space-xs: 0.25rem;
   --space-s: 0.5rem;
@@ -6,4 +7,17 @@
   --space-l: 1rem;
   --space-xl: 1.5rem;
   --space-xxl: 2rem;
+
+  /* font sizes */
+
+  --font-xxs: 0.5rem;
+  --font-xs: 0.75rem;
+  --font-s: 0.9rem;
+  --font-m: 1rem;
+  --font-l: 1.25rem;
+  --font-xl: 1.5rem;
+  --font-xxl: 2rem;
+
+  /* colors */
+
 }

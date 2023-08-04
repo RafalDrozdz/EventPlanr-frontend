@@ -1,17 +1,17 @@
 <template>
-  <QForm class="register-from" @submit.prevent="submit">
+  <QForm class="register-form" @submit.prevent="submit">
     <QInput
       v-model="state.name"
       filled
       lazy-rules
-      :label="$t('register.name')"
+      :label="$t('auth.name')"
       :rules="basicValidator"
     />
     <QInput
       v-model="state.surname"
       filled
       lazy-rules
-      :label="$t('register.surname')"
+      :label="$t('auth.surname')"
       :rules="basicValidator"
     />
     <QInput
@@ -19,14 +19,14 @@
       filled
       lazy-rules
       type="email"
-      :label="$t('register.email')"
+      :label="$t('auth.email')"
       :rules="emailValidator"
     />
     <QInput
       v-model="state.role"
       filled
       lazy-rules
-      :label="$t('register.role')"
+      :label="$t('auth.role')"
       :rules="basicValidator"
     />
     <QInput
@@ -34,7 +34,7 @@
       filled
       lazy-rules
       type="password"
-      :label="$t('register.password')"
+      :label="$t('auth.password')"
       :rules="passwordValidator"
     />
     <QInput
@@ -42,18 +42,16 @@
       filled
       lazy-rules
       type="password"
-      :label="$t('register.repeatPassword')"
+      :label="$t('auth.repeatPassword')"
       :rules="repeatedPasswordValidator"
     />
-    <QBtn color="primary" type="submit">{{
-      $t("register.createAccount")
-    }}</QBtn>
+    <QBtn color="primary" type="submit">{{ $t("auth.createAccount") }}</QBtn>
   </QForm>
 </template>
 
 <script setup lang="ts">
-import { Register } from "~/schemas";
-import useRegisterForm from "~/components/Register/RegisterForm/useRegisterForm";
+import type { Register } from "~/schemas";
+import useRegisterForm from "./useRegisterForm";
 
 interface Props {
   onSubmit: (state: Register, event: Event) => Promise<void>;
@@ -75,7 +73,7 @@ const submit = async (event: Event) => {
 </script>
 
 <style scoped lang="scss">
-.register-from {
+.register-form {
   display: flex;
   flex-direction: column;
   gap: var(--space-l);

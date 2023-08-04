@@ -1,17 +1,22 @@
 <template>
-  <main>
-    <Register />
+  <main class="register">
+    <RegisterForm :on-submit="register" />
   </main>
 </template>
 
 <script setup lang="ts">
+import RegisterForm from "~/components/Register/RegisterForm/RegisterForm.vue";
+import { useAuth } from "~/composables";
 
+const { register } = useAuth();
 </script>
 
-<style lang="scss">
-main{
-    .ccc{
-        background: red;
-    }
+<style scoped lang="scss">
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
 }
 </style>

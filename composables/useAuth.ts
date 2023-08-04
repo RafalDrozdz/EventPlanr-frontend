@@ -1,6 +1,8 @@
 import { useUserStore } from "~/stores";
-import { UserSchema, Login, Register } from "~/schemas";
+import { UserSchema, type Login, type Register } from "~/schemas";
 import { useAxiosInstance } from "~/composables";
+import type { AxiosError } from "axios";
+import { ErrorResponse } from "~/schemas/error.schema";
 
 interface State {
   isLoading: boolean;
@@ -15,8 +17,17 @@ function useAuth() {
     error: null,
   });
 
+  const { t } = useI18n();
   const { add } = useUserStore();
+  const router = useRouter();
   const instance = useAxiosInstance();
+
+  const errorMessage = computed(() => {
+    const errorMessage = (state.error as AxiosError<ErrorResponse>)?.response
+      ?.data?.message;
+    if (errorMessage) return t(`error.${errorMessage}`);
+    return t("error.SOMETHING_WENT_WRONG");
+  });
 
   const initial = () => {
     state.isLoading = true;
@@ -43,6 +54,7 @@ function useAuth() {
       const { data } = await instance.post("auth/login", loginData);
       const user = UserSchema.parse(data);
       add(user);
+      await router.replace("/");
     } catch (error) {
       state.isError = true;
       state.error = error;
@@ -69,6 +81,7 @@ function useAuth() {
       const { data } = await instance.get("auth/user");
       const user = UserSchema.parse(data);
       add(user);
+      return user;
     } catch (error) {
       state.isError = true;
       state.error = error;
@@ -77,7 +90,7 @@ function useAuth() {
     }
   };
 
-  return { ...toRefs(state), register, login, logout, fetchUser };
+  return { ...toRefs(state), errorMessage, register, login, logout, fetchUser };
 }
 
 export default useAuth;

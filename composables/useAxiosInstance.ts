@@ -1,10 +1,10 @@
 import axios from "axios";
 
 export const useAxiosInstance = () => {
-  const { API_URL } = useRuntimeConfig();
+  const config = useRuntimeConfig();
 
   return axios.create({
-    baseURL: API_URL,
+    baseURL: config.public.API_URL,
     withCredentials: true,
   });
 };

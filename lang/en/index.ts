@@ -1,3 +1,4 @@
-import register from "./register";
+import auth from "./auth";
+import error from "./error";
 
-export { register };
+export { auth, error };
