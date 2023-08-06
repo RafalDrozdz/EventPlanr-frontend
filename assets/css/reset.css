@@ -18,6 +18,7 @@
 html,
 body {
   height: 100%;
+  color: var(--text);
 }
 /*
     Typographic tweaks!
@@ -66,4 +67,8 @@ h6 {
 #root,
 #__next {
   isolation: isolate;
+}
+
+menu {
+  padding: 0;
 }

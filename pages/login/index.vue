@@ -9,7 +9,7 @@
 </template>
 
 <script setup lang="ts">
-import LoginForm from "~/components/Login/LoginForm/LoginForm.vue";
+import { LoginForm } from "~/components";
 
 const { login, isError, errorMessage } = useAuth();
 </script>

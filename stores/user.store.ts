@@ -11,6 +11,9 @@ export const useUserStore = defineStore("user", {
     fullname(state: State) {
       return `${state.user?.name} ${state.user?.surname}`;
     },
+    initials(state: State) {
+      return `${state.user?.name?.[0]}${state.user?.surname?.[0]}`.toUpperCase();
+    },
   },
   actions: {
     add(user: User) {

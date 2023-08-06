@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-import RegisterForm from "~/components/Register/RegisterForm/RegisterForm.vue";
+import { RegisterForm } from "~/components";
 import { useAuth } from "~/composables";
 
 const { register } = useAuth();

@@ -1,4 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+import path from "path";
 export default defineNuxtConfig({
   typescript: {
     strict: true,
@@ -20,5 +21,9 @@ export default defineNuxtConfig({
       API_URL: process.env.API_URL,
     },
   },
-  css: ["assets/css/reset.css", "assets/css/variables.css"],
+  css: [
+    "assets/css/reset.css",
+    "assets/css/variables.css",
+    "@fortawesome/fontawesome-svg-core/styles.css",
+  ],
 });

@@ -17,7 +17,13 @@
   --font-l: 1.25rem;
   --font-xl: 1.5rem;
   --font-xxl: 2rem;
+  --font-title: var(--font-xxl);
 
   /* colors */
 
+  --primary: #6fe2fb;
+  --secondary: #c8f4fe;
+  --accent: #06c8f4;
+  --background: #f5fdff;
+  --text: #012932;
 }

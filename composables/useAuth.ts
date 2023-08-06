@@ -75,22 +75,7 @@ function useAuth() {
     }
   };
 
-  const fetchUser = async () => {
-    try {
-      initial();
-      const { data } = await instance.get("auth/user");
-      const user = UserSchema.parse(data);
-      add(user);
-      return user;
-    } catch (error) {
-      state.isError = true;
-      state.error = error;
-    } finally {
-      state.isLoading = false;
-    }
-  };
-
-  return { ...toRefs(state), errorMessage, register, login, logout, fetchUser };
+  return { ...toRefs(state), errorMessage, register, login, logout };
 }
 
 export default useAuth;
