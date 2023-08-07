@@ -2,9 +2,9 @@ import type { MenuItem } from "~/types";
 import { faGear, faHome } from "@fortawesome/free-solid-svg-icons";
 export const MENU_LIST: MenuItem[] = [
   {
-    name: "index",
+    name: "dashboard",
     icon: faHome,
-    href: "/",
+    href: "/dashboard",
   },
   {
     name: "settings",

@@ -54,7 +54,7 @@ function useAuth() {
       const { data } = await instance.post("auth/login", loginData);
       const user = UserSchema.parse(data);
       add(user);
-      await router.replace("/");
+      await router.replace("/dashboard");
     } catch (error) {
       state.isError = true;
       state.error = error;

@@ -13,4 +13,5 @@ export default {
     "Minimum eight characters, at least one letter, one number and one special character",
   passwordsMustBeTheSame: "Password must be the same",
   login: "Login",
+  logout: "Logout",
 };

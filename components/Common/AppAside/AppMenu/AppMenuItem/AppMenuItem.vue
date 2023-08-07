@@ -1,7 +1,7 @@
 <template>
   <li class="app-menu-item">
     <nuxt-link
-      :href="href"
+      :to="localePath(href)"
       class="app-menu-item__link"
       active-class="app-menu-item__link--active"
       :aria-label="ariaLabel"
@@ -23,6 +23,7 @@ interface Props {
 
 const props = defineProps<Props>();
 const { t } = useI18n();
+const localePath = useLocalePath();
 const ariaLabel = t(`route.${props.name}`);
 </script>
 

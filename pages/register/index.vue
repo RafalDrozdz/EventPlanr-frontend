@@ -8,6 +8,8 @@
 import { RegisterForm } from "~/components";
 import { useAuth } from "~/composables";
 
+definePageMeta({ layout: "auth" });
+
 const { register } = useAuth();
 </script>
 

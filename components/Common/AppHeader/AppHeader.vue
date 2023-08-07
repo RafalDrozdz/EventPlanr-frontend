@@ -20,7 +20,12 @@ const route = useRoute();
 
 const { t } = useI18n();
 
-const title = computed(() => t(`route.${route.name as string}`));
+const title = computed(() => {
+  const name = (route.name as string)
+    ?.replace("___pl", "")
+    ?.replace("___en", "");
+  return t(`route.${name as string}`);
+});
 </script>
 
 <style scoped lang="scss">
@@ -31,7 +36,7 @@ const title = computed(() => t(`route.${route.name as string}`));
   display: grid;
   align-items: end;
   grid-template-columns: 1fr max-content;
-  padding: 2px var(--space-m);
+  padding: 2px var(--space-l);
   height: 66px;
 
   &__title {

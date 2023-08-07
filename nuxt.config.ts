@@ -1,6 +1,12 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 import path from "path";
 export default defineNuxtConfig({
+  app: {
+    head: {
+      title: "Evently",
+      link: [{ rel: "icon", type: "image/svg", href: "/favicon.svg" }],
+    },
+  },
   typescript: {
     strict: true,
   },
@@ -26,4 +32,16 @@ export default defineNuxtConfig({
     "assets/css/variables.css",
     "@fortawesome/fontawesome-svg-core/styles.css",
   ],
+  i18n: {
+    locales: [
+      {
+        code: "en",
+      },
+      {
+        code: "pl",
+      },
+    ],
+    defaultLocale: "en",
+    strategy: "prefix_except_default",
+  },
 });

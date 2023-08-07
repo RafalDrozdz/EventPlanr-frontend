@@ -13,4 +13,5 @@ export default {
     "Minimum osiem znaków, co najmniej jedna litera, jedna cyfra i jeden znak specjalny",
   passwordsMustBeTheSame: "Hasła muszą być identyczne",
   login: "Zaloguj się",
+  logout: "Wyloguj się",
 };
