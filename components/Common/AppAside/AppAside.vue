@@ -1,6 +1,8 @@
 <template>
   <aside class="app-aside">
-    <NuxtLink :to="localePath('/dashboard')"><EventlyLogo /></NuxtLink>
+    <NuxtLink class="app-aside__logo" :to="localePath('/dashboard')">
+      <EventlyLogo />
+    </NuxtLink>
     <AppMenu />
     <LogoutButton />
   </aside>
@@ -24,7 +26,7 @@ const localePath = useLocalePath();
   border-right: 1px solid var(--secondary);
 
   &__logo {
-    width: 6rem;
+    height: max-content;
   }
 }
 </style>

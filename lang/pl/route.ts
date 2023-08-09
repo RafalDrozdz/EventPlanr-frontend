@@ -1,4 +1,4 @@
 export default {
-  dashboard: "Dashboard",
+  dashboard: "Pulpit",
   settings: "Ustawienia",
 };
