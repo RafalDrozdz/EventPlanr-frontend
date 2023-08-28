@@ -5,7 +5,7 @@ export default {
   role: "Role",
   password: "Password",
   repeatPassword: "Repeat Password",
-  createAccount: "Create account",
+  createAccount: "EventsCreate account",
   fieldIsRequired: "Field is required",
   invalidEmailFormat: "Invalid email format",
   invalidPasswordFormat: "Invalid password format",

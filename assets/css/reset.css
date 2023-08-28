@@ -60,9 +60,23 @@ h4,
 h5,
 h6 {
   overflow-wrap: break-word;
+  line-height: 1.5;
+}
+
+h2 {
+  font-size: var(--font-xl);
+}
+h3 {
+  font-size: var(--font-l);
+}
+h4 {
+  font-size: var(--font-m);
+}
+h4 {
+  font-size: var(--font-s);
 }
 /*
-    9. Create a root stacking context
+    9. EventsCreate a root stacking context
   */
 #root,
 #__next {
