@@ -1,24 +1,39 @@
 <template>
   <div class="date">
-    <CommonInputDate v-model="dateFrom" :label="$t('events.startDate')" />
+    <CommonInputDate
+      v-if="dateFrom"
+      v-model="dateFrom"
+      :label="$t('events.startDate')"
+    />
     <FontAwesomeIcon :icon="faArrowRight" />
-    <CommonInputDate v-model="dateTo" :label="$t('events.endDate')" />
+    <CommonInputDate
+      v-if="dateTo"
+      v-model="dateTo"
+      :label="$t('events.endDate')"
+    />
   </div>
 </template>
 
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
-import { addHours, format } from "date-fns";
-import { FULL_DATE_FORMAT } from "~/constants";
+
+interface Props {
+  dateFrom: string;
+  dateTo: string;
+}
+
+interface Emits {
+  (emit: "update:dateFrom" | "update:dateTo", value: string): void;
+}
+
+const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
 
 const now = new Date();
 
-const initialFromDate = format(now, FULL_DATE_FORMAT);
-const initialToDate = format(addHours(now, 1), FULL_DATE_FORMAT);
-
-const dateFrom = ref(initialFromDate);
-const dateTo = ref(initialToDate);
+const dateFrom = useVModel(props, "dateFrom", emit);
+const dateTo = useVModel(props, "dateTo", emit);
 </script>
 
 <style scoped lang="scss">

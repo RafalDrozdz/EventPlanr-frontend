@@ -18,6 +18,8 @@ const localePath = useLocalePath();
 
 <style scoped lang="scss">
 .app-aside {
+  position: sticky;
+  top: 0;
   grid-area: aside;
   display: grid;
   grid-template-rows: 12rem 1fr max-content;

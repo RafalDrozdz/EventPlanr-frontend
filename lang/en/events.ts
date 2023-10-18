@@ -3,4 +3,6 @@ export default {
   description: "Description",
   startDate: "Start date",
   endDate: "End date",
+  location: "Location",
+  tickets: "Tickets",
 };

@@ -41,7 +41,7 @@ watch(title, emitModelValue);
   font-weight: 700;
 
   &:focus-visible {
-    outline: 2px solid var(--secondary);
+    outline: 2px solid var(--primary);
     outline-offset: 2px;
     border-radius: var(--space-xxs);
   }
