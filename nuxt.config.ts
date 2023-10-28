@@ -43,6 +43,14 @@ export default defineNuxtConfig({
   },
   quasar: {
     iconSet: "fontawesome-v6",
+    config: {
+      brand: {
+        primary: "var(--primary)",
+        secondary: "var(--secondary)",
+        accent: "var(--accent)",
+        positive: "red",
+      },
+    },
   },
   runtimeConfig: {
     public: {
@@ -51,6 +59,7 @@ export default defineNuxtConfig({
     },
   },
   css: [
+    "assets/css/main.css",
     "assets/css/reset.css",
     "assets/css/variables.css",
     "@fortawesome/fontawesome-svg-core/styles.css",

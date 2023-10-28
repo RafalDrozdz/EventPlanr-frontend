@@ -3,6 +3,7 @@
     <button type="button" class="input-number__button" @click="subtract">
       <FontAwesomeIcon :icon="faMinus" />
     </button>
+
     <input v-model="value" type="number" class="input-number__input" />
 
     <button type="button" class="input-number__button" @click="add">
@@ -53,7 +54,6 @@ const validValue = (newValue: number | string, oldValue: number | string) => {
 
 watch(value, emitValue);
 watch(value, validValue);
-
 watch(() => props.modelValue, setValue, { immediate: true });
 </script>
 
@@ -62,11 +62,15 @@ watch(() => props.modelValue, setValue, { immediate: true });
   display: flex;
 
   &__button {
+    position: relative;
     width: 2.75rem;
     height: 2.75rem;
-    background-color: var(--accent);
+    background-color: var(--primary);
     border: none;
+    outline: none;
     cursor: pointer;
+    color: var(--background);
+    font-size: var(--font-l);
 
     &:first-child {
       border-radius: var(--button-radius) 0 0 var(--button-radius);
@@ -74,16 +78,35 @@ watch(() => props.modelValue, setValue, { immediate: true });
     &:last-child {
       border-radius: 0 var(--button-radius) var(--button-radius) 0;
     }
+
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      border-radius: inherit;
+    }
+
+    &:focus-visible::before,
+    &:hover::before {
+      opacity: 0.22;
+      background-color: currentColor;
+    }
   }
 
   &__input {
     text-align: center;
     width: 6rem;
-    border-top: 1px solid var(--accent);
-    border-bottom: 1px solid var(--accent);
+    border-top: 2px solid var(--primary);
+    border-bottom: 2px solid var(--accent);
     border-right: none;
     border-left: none;
     -moz-appearance: textfield;
+    font-size: 1.25rem;
+    outline: none;
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {

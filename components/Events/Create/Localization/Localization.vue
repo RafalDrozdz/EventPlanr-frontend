@@ -101,9 +101,8 @@ watch(
 .localization {
   &__container {
     position: relative;
-    width: calc(100% + 32px);
+    width: 100%;
     height: 400px;
-    margin: 0 -16px;
   }
 
   &__input {
