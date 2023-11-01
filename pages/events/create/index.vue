@@ -1,71 +1,56 @@
 <template>
-  <QForm class="create-event-form" @submit="submit">
+  <QForm class="create-event-form" @submit="submit" ref="Form">
     <EventsCreateBackground>
-      <EventsCreateTitle v-model="form.title" />
+      <EventsCreateTitle v-model="title" />
     </EventsCreateBackground>
-
-    <EventsCreateDate
-      v-model:date-from="form.dateFrom"
-      v-model:date-to="form.dateTo"
-    />
-    <EventsCreateDescription v-model="form.description" />
+    <EventsCreateDate v-model:date-from="dateFrom" v-model:date-to="dateTo" />
+    <EventsCreateDescription v-model="description" />
     <EventsCreateLocalization
-      v-model:city="form.city"
-      v-model:street="form.street"
-      v-model:street-number="form.streetNumber"
-      v-model:postal-code="form.postalCode"
-      v-model:country="form.country"
-      v-model:place-id="form.placeId"
-      v-model:longitude="form.longitude"
-      v-model:latitude="form.latitude"
+      v-model:city="city"
+      v-model:street="street"
+      v-model:street-number="streetNumber"
+      v-model:postal-code="postalCode"
+      v-model:country="country"
+      v-model:place-id="placeId"
+      v-model:longitude="longitude"
+      v-model:latitude="latitude"
     />
-    <EventsCreateTickets />
+    <EventsCreateTickets v-model="tickets" />
     <EventsCreateSubmit />
   </QForm>
 </template>
 
 <script setup lang="ts">
-import { addHours, format } from "date-fns";
-import { FULL_DATE_FORMAT } from "~/constants";
+const Form = ref<HTMLFormElement>();
 
-const now = new Date();
-
-const initialFromDate = format(now, FULL_DATE_FORMAT);
-const initialToDate = format(addHours(now, 1), FULL_DATE_FORMAT);
-
-interface Form {
-  title: string;
-  description: string;
-  dateFrom: string;
-  dateTo: string;
-  city: string;
-  street: string;
-  streetNumber: string;
-  postalCode: string;
-  country: string;
-  placeId: string;
-  longitude: number | null;
-  latitude: number | null;
+function validate() {
+  Form.value?.validate().then((success: boolean) => {
+    console.log(success);
+    if (success) {
+      // yay, models are correct
+    } else {
+      // oh no, user has filled in
+      // at least one invalid value
+    }
+  });
 }
 
-const form = reactive<Form>({
-  title: "",
-  description: "",
-  dateFrom: initialFromDate,
-  dateTo: initialToDate,
-  city: "",
-  street: "",
-  streetNumber: "",
-  postalCode: "",
-  country: "",
-  placeId: "",
-  longitude: null,
-  latitude: null,
-});
-
-const submit = () => {
-  console.log(form);
-};
+const {
+  title,
+  description,
+  dateFrom,
+  dateTo,
+  city,
+  street,
+  streetNumber,
+  postalCode,
+  country,
+  placeId,
+  longitude,
+  latitude,
+  tickets,
+  submit,
+} = useEventForm(Form);
 </script>
 
 <style scoped lang="scss">

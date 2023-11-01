@@ -3,9 +3,7 @@
     <button type="button" class="input-number__button" @click="subtract">
       <FontAwesomeIcon :icon="faMinus" />
     </button>
-
     <input v-model="value" type="number" class="input-number__input" />
-
     <button type="button" class="input-number__button" @click="add">
       <FontAwesomeIcon :icon="faPlus" />
     </button>
@@ -33,27 +31,29 @@ const emit = defineEmits<Emits>();
 
 const value = ref<number | string>(1);
 
-const add = () =>
-  typeof value.value === "number"
-    ? value.value++
-    : (value.value = props.minValue);
-const subtract = () =>
-  typeof value.value === "number"
-    ? value.value--
-    : (value.value = props.minValue);
+const add = () => {
+  if (
+    props.maxValue &&
+    (typeof value.value !== "number" || value.value + 1 > props.maxValue)
+  ) {
+    value.value = props.maxValue;
+  } else if (typeof value.value === "number") {
+    value.value++;
+  }
+};
+const subtract = () => {
+  if (typeof value.value !== "number" || value.value - 1 < props.minValue) {
+    value.value = props.minValue;
+  } else {
+    value.value--;
+  }
+};
 
 const emitValue = (value: number | string) =>
   emit("update:modelValue", typeof value === "string" ? props.minValue : value);
 const setValue = (newValue: number | string) => (value.value = newValue);
-const validValue = (newValue: number | string, oldValue: number | string) => {
-  const isLower = newValue < props.minValue;
-  const isGrater = props.maxValue && newValue > props.maxValue;
-  if (typeof newValue === "string") return;
-  if (isLower || isGrater) value.value = oldValue;
-};
 
 watch(value, emitValue);
-watch(value, validValue);
 watch(() => props.modelValue, setValue, { immediate: true });
 </script>
 

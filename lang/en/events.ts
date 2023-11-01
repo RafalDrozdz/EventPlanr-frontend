@@ -5,4 +5,6 @@ export default {
   endDate: "End date",
   location: "Location",
   tickets: "Tickets",
+  free: "Free",
+  paid: "Paid",
 };

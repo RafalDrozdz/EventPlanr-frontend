@@ -5,11 +5,14 @@
       v-model="description"
       min-height="20rem"
       class="description__editor"
+      :rules="requiredRule(t)"
     />
   </div>
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
+
 interface Props {
   modelValue: string;
 }

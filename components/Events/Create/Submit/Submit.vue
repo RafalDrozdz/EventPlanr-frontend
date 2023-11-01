@@ -1,6 +1,6 @@
 <template>
   <div class="submit">
-    <QBtn type="submit">Submit</QBtn>
+    <QBtn label="Submit" type="submit" color="primary" />
   </div>
 </template>
 

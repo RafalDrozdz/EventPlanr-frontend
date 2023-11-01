@@ -5,4 +5,6 @@ export default {
   endDate: "Data zakończenia",
   location: "Lokalizacja",
   tickets: "Bilety",
+  free: "Bezpłatny",
+  paid: "Płatny",
 };

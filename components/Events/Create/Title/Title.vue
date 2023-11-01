@@ -1,8 +1,16 @@
 <template>
-  <input class="title" v-model="title" :placeholder="$t('events.title')" />
+  <QInput
+    class="title"
+    v-model="title"
+    :placeholder="$t('events.title')"
+    :rules="requiredRule(t)"
+    lazy-rules
+  />
 </template>
 
 <script setup lang="ts">
+const { t } = useI18n();
+
 interface Props {
   modelValue: string;
 }
