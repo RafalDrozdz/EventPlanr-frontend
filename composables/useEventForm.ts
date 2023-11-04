@@ -1,50 +1,20 @@
-import { addHours, format } from "date-fns";
-import { FULL_DATE_FORMAT } from "~/constants";
-import { Ticket } from "~/schemas/event.schema";
+import { EventForm, Ticket } from "~/schemas/event.schema";
+import { cloneDeep } from "lodash-es";
+import { Ref } from "vue";
 
-interface Form {
-  title: string;
-  description: string;
-  dateFrom: string;
-  dateTo: string;
-  city: string;
-  street: string;
-  streetNumber: string;
-  postalCode: string;
-  country: string;
-  placeId: string;
-  longitude: number | null;
-  latitude: number | null;
-  tickets: Ticket[];
-}
+function useEventForm(
+  Form: Ref<HTMLFormElement | undefined>,
+  newState: EventForm,
+  action: (form: EventForm) => Promise<void>
+) {
+  const state = reactive<EventForm>(newState);
 
-function useEventForm(Form: HTMLFormElement) {
-  const now = new Date();
-
-  const initialFromDate = format(now, FULL_DATE_FORMAT);
-  const initialToDate = format(addHours(now, 1), FULL_DATE_FORMAT);
-
-  const state = reactive<Form>({
-    title: "",
-    description: "",
-    dateFrom: initialFromDate,
-    dateTo: initialToDate,
-    city: "",
-    street: "",
-    streetNumber: "",
-    postalCode: "",
-    country: "",
-    placeId: "",
-    longitude: null,
-    latitude: null,
-    tickets: [],
-  });
-
-  const submit = () => {
+  const submit = async () => {
+    console.log(Form.value);
     Form.value?.validate().then((success: boolean) => {
       console.log(success);
       if (success) {
-        // yay, models are correct
+        action(state);
       } else {
         // oh no, user has filled in
         // at least one invalid value

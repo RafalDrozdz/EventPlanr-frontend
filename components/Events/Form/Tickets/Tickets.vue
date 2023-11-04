@@ -12,7 +12,7 @@
       <CommonInputNumber v-model="amountOfTickets" :max-value="10" />
       <ul class="tickets__container">
         <template v-for="(_ticket, index) of tickets" :key="index">
-          <EventsCreateTicketsItem v-model="tickets[index]" />
+          <EventsFormTicketsItem v-model="tickets[index]" />
         </template>
       </ul>
     </template>
@@ -48,30 +48,33 @@ const OPTIONS = computed(() => [
   { label: t("events.paid"), value: "PAID" },
 ]);
 
-watch(
-  amountOfTickets,
-  (amountOfTickets: number) => {
-    const ticket: Ticket = {
-      price: null,
-      currency: "",
-      title: "",
-    };
+const handleTickets = (amountOfTickets: number) => {
+  const ticket: Ticket = {
+    price: null,
+    currency: "",
+    title: "",
+  };
 
-    const ticketsTemporary: Ticket[] = cloneDeep(tickets.value);
-    for (let i = 0; i < amountOfTickets; i++) {
-      ticketsTemporary.push(cloneDeep(ticket));
-    }
-    tickets.value = ticketsTemporary;
-    tickets.value.length = amountOfTickets;
-  },
-  { immediate: true }
-);
+  const ticketsTemporary: Ticket[] = cloneDeep(tickets.value);
+  for (let i = 0; i < amountOfTickets; i++) {
+    ticketsTemporary.push(cloneDeep(ticket));
+  }
+  tickets.value = ticketsTemporary;
+  tickets.value.length = amountOfTickets;
+};
+
+const handlePaid = (isPaid: boolean) => {
+  if (isPaid) handleTickets(amountOfTickets.value);
+  else tickets.value = [];
+};
 
 const setTickets = (value: Ticket[]) => (tickets.value = value);
 const emitTickets = (value: Ticket[]) => emit("update:modelValue", value);
 
-watch(() => props.modelValue, setTickets);
-watch(tickets, emitTickets);
+watch(isPaid, handlePaid, { immediate: true });
+watch(amountOfTickets, handleTickets, { immediate: true });
+watch(() => props.modelValue, setTickets, { deep: true });
+watch(tickets, emitTickets, { deep: true });
 </script>
 
 <style scoped lang="scss">
