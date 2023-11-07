@@ -1,10 +1,16 @@
 <template>
   <div class="submit">
-    <QBtn label="Submit" type="submit" color="primary" />
+    <QBtn :loading="loading" label="Submit" type="submit" color="primary" />
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+interface Props {
+  loading: boolean;
+}
+
+defineProps<Props>();
+</script>
 
 <style scoped lang="scss">
 .submit {

@@ -9,8 +9,8 @@ export const TicketSchema = z.object({
 export const EventFormSchema = z.object({
   title: z.string(),
   description: z.string(),
-  dateFrom: z.string(),
-  dateTo: z.string(),
+  startDate: z.string(),
+  endDate: z.string(),
   city: z.string(),
   street: z.string(),
   streetNumber: z.string(),

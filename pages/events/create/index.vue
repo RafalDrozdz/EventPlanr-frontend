@@ -1,11 +1,7 @@
 <template>
-  <EventsForm :submit="submit" />
+  <EventsForm :submit="add" :loading="isLoading" :error="error" />
 </template>
 
 <script setup lang="ts">
-import { EventForm } from "~/schemas/event.schema";
-
-const submit = async (form: EventForm) => {
-  console.log(form);
-};
+const { response, error, isLoading, add } = useEventAdd();
 </script>

@@ -56,7 +56,6 @@ watch(ticket, emitTicket);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: var(--space-m);
-  padding: var(--space-m);
   color: var(--background);
 }
 

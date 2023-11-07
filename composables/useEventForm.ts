@@ -1,5 +1,4 @@
-import { EventForm, Ticket } from "~/schemas/event.schema";
-import { cloneDeep } from "lodash-es";
+import { EventForm } from "~/schemas/event.schema";
 import { Ref } from "vue";
 
 function useEventForm(
@@ -10,9 +9,7 @@ function useEventForm(
   const state = reactive<EventForm>(newState);
 
   const submit = async () => {
-    console.log(Form.value);
     Form.value?.validate().then((success: boolean) => {
-      console.log(success);
       if (success) {
         action(state);
       } else {

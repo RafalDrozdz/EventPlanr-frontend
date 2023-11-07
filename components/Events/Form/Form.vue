@@ -1,9 +1,16 @@
 <template>
   <QForm class="create-event-form" @submit="formSubmit" ref="FormElement">
+    <QBanner
+      v-if="error"
+      class="create-event-form__error flex text-white bg-red"
+    >
+      <FontAwesomeIcon :icon="faTriangleExclamation" />
+      Something went wrong!
+    </QBanner>
     <EventsFormBackground>
       <EventsFormTitle v-model="title" />
     </EventsFormBackground>
-    <EventsFormDate v-model:date-from="dateFrom" v-model:date-to="dateTo" />
+    <EventsFormDate v-model:date-from="startDate" v-model:date-to="endDate" />
     <EventsFormDescription v-model="description" />
     <EventsFormLocalization
       v-model:city="city"
@@ -16,7 +23,7 @@
       v-model:latitude="latitude"
     />
     <EventsFormTickets v-model="tickets" />
-    <EventsFormSubmit />
+    <EventsFormSubmit :loading="loading" />
   </QForm>
 </template>
 
@@ -24,12 +31,16 @@
 import { EventForm } from "~/schemas/event.schema";
 import { addHours, format } from "date-fns";
 import { FULL_DATE_FORMAT } from "~/constants";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 
 const FormElement = ref<HTMLFormElement>();
 
 interface Props {
   form?: EventForm;
   submit: (form: EventForm) => Promise<void>;
+  loading: boolean;
+  error: unknown;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -41,8 +52,8 @@ const props = withDefaults(defineProps<Props>(), {
     return {
       title: "",
       description: "",
-      dateFrom: initialFromDate,
-      dateTo: initialToDate,
+      startDate: initialFromDate,
+      endDate: initialToDate,
       city: "",
       street: "",
       streetNumber: "",
@@ -59,8 +70,8 @@ const props = withDefaults(defineProps<Props>(), {
 const {
   title,
   description,
-  dateFrom,
-  dateTo,
+  startDate,
+  endDate,
   city,
   street,
   streetNumber,
@@ -72,6 +83,11 @@ const {
   tickets,
   submit: formSubmit,
 } = useEventForm(FormElement, props.form, props.submit);
+
+watch(
+  () => props.error,
+  (error: unknown) => error && window.scrollTo(0, 0)
+);
 </script>
 
 <style scoped lang="scss">
@@ -80,5 +96,17 @@ const {
   flex-direction: column;
   gap: var(--space-l);
   padding: var(--space-l) var(--space-l) 72px var(--space-l);
+
+  &__error {
+    :deep(.q-banner__content) {
+      display: flex;
+      align-items: center;
+      gap: var(--space-m);
+    }
+
+    svg {
+      font-size: 2rem;
+    }
+  }
 }
 </style>
