@@ -20,6 +20,7 @@ interface Props {
   street: string;
   city: string;
   placeId: string;
+  placeName: string;
   postalCode: string;
   longitude: number | null;
   latitude: number | null;
@@ -31,6 +32,7 @@ type EmitString =
   | "update:street"
   | "update:city"
   | "update:placeId"
+  | "update:placeName"
   | "update:postalCode";
 
 type EmitNumber = "update:longitude" | "update:latitude";
@@ -53,12 +55,13 @@ const {
   street,
   city,
   placeId,
+  placeName,
   postalCode,
   longitude,
   latitude,
 } = useGoogleLocalizationInput("google-address-autocomplete");
 
-const { setMarker } = useGoogleMap("google-map");
+const { setMarker, load } = useGoogleMap("google-map");
 
 watch([longitude, latitude], ([longitude, latitude]) => {
   if (longitude !== null && latitude !== null) setMarker(longitude, latitude);
@@ -71,6 +74,7 @@ watch(
     street,
     city,
     placeId,
+    placeName,
     postalCode,
     longitude,
     latitude,
@@ -81,6 +85,7 @@ watch(
     street,
     city,
     placeId,
+    placeName,
     postalCode,
     longitude,
     latitude,
@@ -90,11 +95,14 @@ watch(
     vModels.street.value = street;
     vModels.city.value = city;
     vModels.placeId.value = placeId ?? "";
+    vModels.placeName.value = placeName ?? "";
     vModels.postalCode.value = postalCode;
     vModels.longitude.value = longitude;
     vModels.latitude.value = latitude;
   }
 );
+
+onMounted(load);
 </script>
 
 <style scoped lang="scss">

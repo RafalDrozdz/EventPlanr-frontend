@@ -8,8 +8,17 @@
       The event was successfully created
     </QBanner>
     <EventsFormBackground>
-      <h2 class="event__title">{{ data.title }}</h2>
+      <h2 class="event__title">{{ data?.title }}</h2>
     </EventsFormBackground>
+    <EventsDisplayLocalization
+      :city="data?.city"
+      :place-name="data?.place_name"
+      :street="data?.street"
+      :street-number="data?.street_number"
+      :longitude="data?.longitude"
+      :latitude="data?.latitude"
+    />
+    <EventsDisplayDescription :text="data?.description" />
     <!--    <EventsFormDate v-model:date-from="startDate" v-model:date-to="endDate" />-->
     <!--    <EventsFormDescription v-model="description" />-->
     <!--    <EventsFormLocalization-->
@@ -22,22 +31,25 @@
     <!--      v-model:longitude="longitude"-->
     <!--      v-model:latitude="latitude"-->
     <!--    />-->
-    <!--    <EventsFormTickets v-model="tickets" />-->
+    <!--    <pre>{{ data }}</pre>-->
   </div>
 </template>
 
 <script setup lang="ts">
 import { faCircleCheck } from "@fortawesome/free-regular-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-import { EventForm } from "~/schemas/event.schema";
+import type { EventForm } from "~/schemas/event.schema";
 
 const route = useRoute();
 
 const id = computed(() => route.params.id);
 const isSuccessfullyCreated = computed(() => route.query.success === "true");
 
+const headers = useRequestHeaders();
+
 const { data, pending, error, status } = await useFetch<EventForm>(
-  `/api/event/${id.value}`
+  `/api/event/${id.value}`,
+  { headers }
 );
 </script>
 
@@ -46,7 +58,7 @@ const { data, pending, error, status } = await useFetch<EventForm>(
   display: flex;
   flex-direction: column;
   gap: var(--space-l);
-  padding: var(--space-l) var(--space-l) 72px var(--space-l);
+  padding: var(--space-xl) var(--space-xl) 72px var(--space-xl);
 
   &__banner {
     :deep(.q-banner__content) {

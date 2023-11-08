@@ -20,7 +20,7 @@
 </template>
 
 <script setup lang="ts">
-import { Ticket } from "~/schemas/event.schema";
+import type { Ticket } from "~/schemas/event.schema";
 import { cloneDeep } from "lodash-es";
 
 interface Props {

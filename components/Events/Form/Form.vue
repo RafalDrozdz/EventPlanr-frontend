@@ -19,6 +19,7 @@
       v-model:postal-code="postalCode"
       v-model:country="country"
       v-model:place-id="placeId"
+      v-model:place-name="placeName"
       v-model:longitude="longitude"
       v-model:latitude="latitude"
     />
@@ -28,7 +29,7 @@
 </template>
 
 <script setup lang="ts">
-import { EventForm } from "~/schemas/event.schema";
+import type { EventForm } from "~/schemas/event.schema";
 import { addHours, format } from "date-fns";
 import { FULL_DATE_FORMAT } from "~/constants";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
@@ -60,6 +61,7 @@ const props = withDefaults(defineProps<Props>(), {
       postalCode: "",
       country: "",
       placeId: "",
+      placeName: "",
       longitude: null,
       latitude: null,
       tickets: [],
@@ -78,6 +80,7 @@ const {
   postalCode,
   country,
   placeId,
+  placeName,
   longitude,
   latitude,
   tickets,

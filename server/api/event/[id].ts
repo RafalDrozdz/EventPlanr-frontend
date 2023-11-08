@@ -1,5 +1,8 @@
-export default defineEventHandler(async (event) => {
-  const { id } = event.context.params!;
+import { sleep } from "@antfu/utils";
 
-  return $fetch(`http://localhost:4000/api/event/${id}`);
+export default defineEventHandler(async (event) => {
+  const { headers, context } = event;
+  const { id } = context.params!;
+
+  return $fetch(`http://localhost:4000/api/event/${id}`, { headers });
 });

@@ -17,6 +17,7 @@ export const EventFormSchema = z.object({
   postalCode: z.string(),
   country: z.string(),
   placeId: z.string(),
+  placeName: z.string(),
   longitude: z.number().nullable(),
   latitude: z.number().nullable(),
   tickets: TicketSchema.array(),

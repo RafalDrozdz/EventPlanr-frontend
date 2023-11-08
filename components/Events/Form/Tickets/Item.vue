@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { Ticket } from "~/schemas/event.schema";
+import type { Ticket } from "~/schemas/event.schema";
 
 const { t } = useI18n();
 

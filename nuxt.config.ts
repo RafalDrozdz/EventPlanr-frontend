@@ -51,6 +51,7 @@ export default defineNuxtConfig({
         positive: "red",
       },
     },
+    plugins: ["Dialog"],
   },
   runtimeConfig: {
     public: {
@@ -76,4 +77,15 @@ export default defineNuxtConfig({
     defaultLocale: "en",
     strategy: "prefix_except_default",
   },
+  // proxy: {
+  //   enableProxy: true,
+  //   fetch: true,
+  //   proxies: {
+  //     "/proxy": {
+  //       target: "http://localhost:4000",
+  //       changeOrigin: true,
+  //       rewrite: (path) => path.replace(/^\/proxy/, ""),
+  //     },
+  //   },
+  // },
 });

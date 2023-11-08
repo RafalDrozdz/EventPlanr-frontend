@@ -7,13 +7,17 @@ function useGoogleMap(divId: string) {
   const map = ref();
   const marker = ref<google.maps.Marker>();
 
-  const setMarker = (longitude: number, latitude: number) => {
+  const setMarker = (
+    longitude: number,
+    latitude: number,
+    clearMarker = false
+  ) => {
     const position = {
       lat: latitude,
       lng: longitude,
     };
 
-    if (marker.value) {
+    if (marker.value && !clearMarker) {
       marker.value?.setPosition(position);
     } else {
       marker.value = new google.maps.Marker({
@@ -24,7 +28,7 @@ function useGoogleMap(divId: string) {
     map.value.setCenter(new google.maps.LatLng(latitude, longitude));
   };
 
-  onMounted(async () => {
+  const load = async () => {
     const loader = new Loader({
       apiKey: config.public.GOOGLE_MAPS_API_KEY,
       version: "weekly",
@@ -35,14 +39,15 @@ function useGoogleMap(divId: string) {
     await loader.load();
     // @ts-ignore
     const { Map } = await google.maps.importLibrary("maps");
+
     map.value = new Map(mapElement.value, {
       center: { lat: 51.77675190000001, lng: 19.4892634 },
       zoom: 16,
       disableDefaultUI: true,
     } as google.maps.MapOptions);
-  });
+  };
 
-  return { setMarker };
+  return { setMarker, load };
 }
 
 export default useGoogleMap;

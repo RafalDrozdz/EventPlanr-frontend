@@ -21,7 +21,6 @@ function useEventAdd() {
     try {
       state.isLoading = true;
       state.error = null;
-
       const preparedForm: any = {};
       Object.keys(form).forEach(
         (key) => (preparedForm[snakeCase(key)] = form[key as keyof EventForm])

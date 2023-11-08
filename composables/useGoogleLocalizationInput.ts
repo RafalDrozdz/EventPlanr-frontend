@@ -5,6 +5,7 @@ interface State {
   postalCode: string;
   country: string;
   placeId: string | undefined;
+  placeName: string | undefined;
   longitude: number | null;
   latitude: number | null;
 }
@@ -17,6 +18,7 @@ function useGoogleLocalizationInput(inputId: string) {
     postalCode: "",
     country: "",
     placeId: "",
+    placeName: "",
     longitude: null,
     latitude: null,
   });
@@ -57,6 +59,7 @@ function useGoogleLocalizationInput(inputId: string) {
       state.latitude = place.geometry?.location?.lat() ?? null;
       state.longitude = place.geometry?.location?.lng() ?? null;
       state.placeId = place.place_id;
+      state.placeName = place.name;
     });
   });
 
