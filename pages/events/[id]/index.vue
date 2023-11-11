@@ -5,7 +5,7 @@
       class="event__banner flex text-white bg-green"
     >
       <FontAwesomeIcon :icon="faCircleCheck" />
-      The event was successfully created
+      {{ $t("events.successful") }}
     </QBanner>
     <EventsFormBackground>
       <h2 class="event__title">{{ data?.title }}</h2>
@@ -22,10 +22,10 @@
         :latitude="data?.latitude"
       />
       <EventsDisplayPrice :ticket="data?.cheapest_ticket" />
-      <QBtn color="primary" class="event__order">Zamawiam</QBtn>
+      <QBtn v-if="!isFree" color="primary" class="event__order">Zamawiam</QBtn>
     </div>
-
     <EventsDisplayDescription :text="data?.description" />
+    <EventsDisplayTickets v-if="!isFree" :tickets="data?.tickets" />
   </div>
 </template>
 
@@ -40,6 +40,8 @@ const id = computed(() => route.params.id);
 const isSuccessfullyCreated = computed(() => route.query.success === "true");
 
 const headers = useRequestHeaders();
+
+const isFree = computed(() => !data.value?.tickets.length);
 
 const { data, pending, error, status } = await useFetch<EventForm>(
   `/api/event/${id.value}`,
@@ -58,7 +60,7 @@ const { data, pending, error, status } = await useFetch<EventForm>(
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
-    padding: 0 var(--space-m);
+    padding: var(--space-m);
     width: max-content;
   }
 

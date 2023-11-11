@@ -10,7 +10,6 @@
 <script setup lang="ts">
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import { ISODateToDDMMYYYYHHMM } from "@/utils/date.utils";
 
 interface Props {
   text: string;

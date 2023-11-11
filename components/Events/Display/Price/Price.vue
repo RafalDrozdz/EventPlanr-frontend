@@ -19,8 +19,8 @@ const { t } = useI18n();
 
 const text = computed(() =>
   props.ticket
-    ? `${t("events.from")} ${props.ticket.price} ${props.ticket.currency}`
-    : t("events.freeEntrance")
+    ? `${t("events.from")} ${props.ticket.price}${props.ticket.currency}`
+    : t("events.free")
 );
 </script>
 
@@ -31,7 +31,6 @@ const text = computed(() =>
   gap: var(--space-s);
   font-size: var(--font-xl);
   width: max-content;
-  cursor: pointer;
   font-weight: 700;
 
   &__text {

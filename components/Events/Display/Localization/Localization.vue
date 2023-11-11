@@ -80,7 +80,7 @@ const showDialog = async () => {
     }
   }
   svg {
-    font-size: var(--font-xxl);
+    font-size: var(--font-xl);
     width: 1.5rem;
   }
 }

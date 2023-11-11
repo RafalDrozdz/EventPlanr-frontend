@@ -10,5 +10,5 @@ export default {
   start: "Start",
   end: "Koniec",
   from: "od",
-  freeEntrance: "Wstęp wolny",
+  successful: "Wydarzenie zostało utworzone pomyślnie",
 };

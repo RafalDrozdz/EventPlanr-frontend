@@ -10,5 +10,5 @@ export default {
   start: "Start",
   end: "End",
   from: "from",
-  freeEntrance: "Free entrance",
+  successful: "The event was successfully created",
 };
