@@ -10,28 +10,22 @@
     <EventsFormBackground>
       <h2 class="event__title">{{ data?.title }}</h2>
     </EventsFormBackground>
-    <EventsDisplayLocalization
-      :city="data?.city"
-      :place-name="data?.place_name"
-      :street="data?.street"
-      :street-number="data?.street_number"
-      :longitude="data?.longitude"
-      :latitude="data?.latitude"
-    />
+    <div class="event__info">
+      <EventsDisplayDate :text="$t('events.start')" :date="data?.start_date" />
+      <EventsDisplayDate :text="$t('events.end')" :date="data?.end_date" />
+      <EventsDisplayLocalization
+        :city="data?.city"
+        :place-name="data?.place_name"
+        :street="data?.street"
+        :street-number="data?.street_number"
+        :longitude="data?.longitude"
+        :latitude="data?.latitude"
+      />
+      <EventsDisplayPrice :ticket="data?.cheapest_ticket" />
+      <QBtn color="primary" class="event__order">Zamawiam</QBtn>
+    </div>
+
     <EventsDisplayDescription :text="data?.description" />
-    <!--    <EventsFormDate v-model:date-from="startDate" v-model:date-to="endDate" />-->
-    <!--    <EventsFormDescription v-model="description" />-->
-    <!--    <EventsFormLocalization-->
-    <!--      v-model:city="city"-->
-    <!--      v-model:street="street"-->
-    <!--      v-model:street-number="streetNumber"-->
-    <!--      v-model:postal-code="postalCode"-->
-    <!--      v-model:country="country"-->
-    <!--      v-model:place-id="placeId"-->
-    <!--      v-model:longitude="longitude"-->
-    <!--      v-model:latitude="latitude"-->
-    <!--    />-->
-    <!--    <pre>{{ data }}</pre>-->
   </div>
 </template>
 
@@ -59,6 +53,23 @@ const { data, pending, error, status } = await useFetch<EventForm>(
   flex-direction: column;
   gap: var(--space-l);
   padding: var(--space-xl) var(--space-xl) 72px var(--space-xl);
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-m);
+    padding: 0 var(--space-m);
+    width: max-content;
+  }
+
+  &__order {
+    font-size: var(--font-m);
+    font-weight: 700;
+    padding: var(--space-m) 8rem;
+    min-width: 128px;
+    max-width: 384px;
+    width: 100%;
+  }
 
   &__banner {
     :deep(.q-banner__content) {

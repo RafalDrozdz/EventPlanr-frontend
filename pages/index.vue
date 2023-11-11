@@ -1,8 +1,7 @@
 <template>
   <!--  <div>aaa</div>-->
   <!--  <nuxt-link href="/login">login</nuxt-link>-->
-
-  aaaa
+  <div>aaaa</div>
 </template>
 
 <script setup lang="ts">

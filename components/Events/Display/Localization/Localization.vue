@@ -9,7 +9,6 @@
     <FontAwesomeIcon :icon="faLocationDot" />
     <span class="localization__text">{{ text }}</span>
   </div>
-  <QDialog> </QDialog>
 </template>
 
 <script setup lang="ts">
@@ -32,10 +31,16 @@ let timeoutId = -1;
 const $q = useQuasar();
 const { setMarker, load } = useGoogleMap("google-map");
 
-const text = computed(
-  () =>
-    `${props.placeName}, ${props.city} ${props.street} ${props.streetNumber}`
-);
+const text = computed(() => {
+  const addressElements = [
+    props.placeName,
+    props.city,
+    props.street,
+    props.streetNumber,
+  ];
+  const address = addressElements.filter((item) => item != null);
+  return address.join(" ");
+});
 
 const showDialog = async () => {
   $q.dialog({
@@ -59,14 +64,24 @@ const showDialog = async () => {
   gap: var(--space-s);
   font-size: var(--font-m);
   width: max-content;
-  padding: var(--space-s) var(--space-m);
   cursor: pointer;
 
   &__text {
-    margin: 0;
+    position: relative;
+
+    &::after {
+      position: absolute;
+      content: "";
+      left: 0;
+      top: calc(100% - 2px);
+      height: 2px;
+      width: 100%;
+      background: var(--primary);
+    }
   }
   svg {
     font-size: var(--font-xxl);
+    width: 1.5rem;
   }
 }
 </style>

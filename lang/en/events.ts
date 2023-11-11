@@ -7,4 +7,8 @@ export default {
   tickets: "Tickets",
   free: "Free",
   paid: "Paid",
+  start: "Start",
+  end: "End",
+  from: "from",
+  freeEntrance: "Free entrance",
 };

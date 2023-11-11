@@ -7,4 +7,8 @@ export default {
   tickets: "Bilety",
   free: "Bezpłatny",
   paid: "Płatny",
+  start: "Start",
+  end: "Koniec",
+  from: "od",
+  freeEntrance: "Wstęp wolny",
 };
