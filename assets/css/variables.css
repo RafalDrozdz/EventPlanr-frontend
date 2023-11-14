@@ -23,7 +23,8 @@
   /* colors */
 
   --primary: #442d9f;
-  --secondary: #beb3ea;
+  /*--secondary: #beb3ea;*/
+  --secondary: #e9e5ff;
   --accent: #452ea3;
   --background: #fafaff;
   --background-darker: #c5c5c5;

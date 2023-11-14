@@ -43,10 +43,9 @@ const headers = useRequestHeaders();
 
 const isFree = computed(() => !data.value?.tickets.length);
 
-const { data, pending, error, status } = await useFetch<EventForm>(
-  `/api/event/${id.value}`,
-  { headers }
-);
+const { data, error } = await useFetch<EventForm>(`/api/event/${id.value}`, {
+  headers,
+});
 </script>
 
 <style scoped lang="scss">
