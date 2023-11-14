@@ -1,3 +1,5 @@
+import type { Event } from "@/schemas";
+
 interface State {
   data: Event[];
   isLoading: boolean;
@@ -11,9 +13,14 @@ function useEvent() {
     error: null,
   });
 
-  const fetch = async (text: string) => {
+  const { $api } = useNuxtApp();
+
+  const fetch = async (search = "") => {
     try {
       state.isLoading = true;
+      state.error = null;
+      const { data } = await $api.get(`/event/search/${search}`);
+      state.data = data;
     } catch (error) {
       state.error = error;
     } finally {
@@ -21,7 +28,7 @@ function useEvent() {
     }
   };
 
-  return { ...toRefs(state) };
+  return { ...toRefs(state), fetch };
 }
 
 export default useEvent;

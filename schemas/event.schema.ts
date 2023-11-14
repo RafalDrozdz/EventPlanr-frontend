@@ -23,5 +23,25 @@ export const EventFormSchema = z.object({
   tickets: TicketSchema.array(),
 });
 
+export const EventSchema = z.object({
+  id: z.number(),
+  creator_user_id: z.number(),
+  title: z.string(),
+  description: z.string(),
+  status: z.string(),
+  city: z.string(),
+  street: z.string(),
+  street_number: z.string(),
+  postal_code: z.string(),
+  country: z.string(),
+  place_id: z.string(),
+  place_name: z.string(),
+  longitude: z.string().nullable(),
+  latitude: z.string().nullable(),
+  start_date: z.string(),
+  end_date: z.string(),
+});
+
 export type Ticket = z.infer<typeof TicketSchema>;
+export type Event = z.infer<typeof EventSchema>;
 export type EventForm = z.infer<typeof EventFormSchema>;
