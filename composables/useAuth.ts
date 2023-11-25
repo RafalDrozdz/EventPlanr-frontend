@@ -1,6 +1,5 @@
 import { useUserStore } from "~/stores";
 import { UserSchema, type Login, type Register } from "~/schemas";
-import { useAxiosInstance } from "~/composables";
 import type { AxiosError } from "axios";
 import { ErrorResponse } from "~/schemas/error.schema";
 

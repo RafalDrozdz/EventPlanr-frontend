@@ -9,7 +9,6 @@
 
 <script setup lang="ts">
 import { debounce } from "lodash-es";
-import useEvent from "~/composables/useEvent";
 import type { Event } from "~/schemas";
 const DEBOUNCE_TIMEOUT = 500;
 

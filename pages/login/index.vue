@@ -9,8 +9,6 @@
 </template>
 
 <script setup lang="ts">
-import { LoginForm } from "~/components";
-
 definePageMeta({ layout: "auth" });
 
 const { login, isError, errorMessage } = useAuth();

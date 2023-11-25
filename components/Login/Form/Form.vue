@@ -26,7 +26,6 @@
 </template>
 
 <script setup lang="ts">
-import { QForm } from "quasar";
 import useLoginForm from "./useLoginForm";
 import type { Login } from "~/schemas";
 

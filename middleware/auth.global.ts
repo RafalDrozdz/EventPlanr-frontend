@@ -1,6 +1,4 @@
-import { useUser } from "~/composables";
 import { UNAUTHENTICATED_ROUTES } from "~/constants";
-import { useUserStore } from "~/stores";
 
 export default defineNuxtRouteMiddleware(async (to, from) => {
   const { status } = await useUser();

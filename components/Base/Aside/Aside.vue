@@ -3,15 +3,13 @@
     <NuxtLink class="app-aside__logo" :to="localePath('/dashboard')">
       <EventlyLogo />
     </NuxtLink>
-    <AppMenu />
-    <LogoutButton />
+    <BaseAsideMenu />
+    <BaseAsideLogoutButton />
   </aside>
 </template>
 
 <script setup lang="ts">
-import { AppMenu } from "~/components";
 import EventlyLogo from "assets/img/EventlyLogo.vue";
-import LogoutButton from "~/components/Common/AppAside/LogoutButton/LogoutButton.vue";
 
 const localePath = useLocalePath();
 </script>

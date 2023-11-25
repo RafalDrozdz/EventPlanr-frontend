@@ -1,7 +1,6 @@
-<template><LangSelector /></template>
+<template><SettingsLangSelector /></template>
 
 <script setup lang="ts">
-import { LangSelector } from "~/components";
 </script>
 
 <style scoped lang="scss"></style>

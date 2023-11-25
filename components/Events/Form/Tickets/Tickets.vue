@@ -9,7 +9,7 @@
     />
 
     <template v-if="isPaid">
-      <CommonInputNumber v-model="amountOfTickets" :max-value="10" />
+      <BaseInputNumber v-model="amountOfTickets" :max-value="10" />
       <ul class="tickets__container">
         <template v-for="(_ticket, index) of tickets" :key="index">
           <EventsFormTicketsItem v-model="tickets[index]" />

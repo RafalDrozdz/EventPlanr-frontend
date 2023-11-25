@@ -1,15 +1,12 @@
 <template>
   <div class="default-layout">
-    <AppAside />
-    <AppHeader />
+    <BaseAside />
+    <BaseHeader />
     <main class="default-layout__content">
       <slot />
     </main>
   </div>
 </template>
-<script setup lang="ts">
-import { AppHeader, AppAside } from "~/components";
-</script>
 
 <style scoped lang="scss">
 .default-layout {

@@ -1,6 +1,6 @@
 <template>
   <menu class="app-menu">
-    <AppMenuItem
+    <BaseAsideMenuItem
       v-for="{ icon, href, name } in MENU_LIST"
       :key="getKey(name)"
       :name="name"
@@ -11,7 +11,6 @@
 </template>
 
 <script setup lang="ts">
-import { AppMenuItem } from "./";
 import { MENU_LIST } from "~/constants";
 
 const getKey = (id: string) => `app-menu-item${id}`;

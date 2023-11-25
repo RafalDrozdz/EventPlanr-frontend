@@ -1,12 +1,12 @@
 <template>
   <div class="date">
-    <CommonInputDate
+    <BaseInputDate
       v-if="dateFrom"
       v-model="dateFrom"
       :label="$t('events.startDate')"
     />
     <FontAwesomeIcon :icon="faArrowRight" />
-    <CommonInputDate
+    <BaseInputDate
       v-if="dateTo"
       v-model="dateTo"
       :label="$t('events.endDate')"
