@@ -1,6 +1,8 @@
 import { z } from "zod";
 
 export const TicketSchema = z.object({
+  id: z.number(),
+  event_id: z.number(),
   price: z.number().nullable(),
   currency: z.string(),
   title: z.string(),

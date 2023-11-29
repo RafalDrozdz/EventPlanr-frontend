@@ -54,9 +54,13 @@ export default defineNuxtConfig({
     plugins: ["Dialog"],
   },
   runtimeConfig: {
+    private: {
+      STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY,
+    },
     public: {
       API_URL: process.env.API_URL,
       GOOGLE_MAPS_API_KEY: process.env.GOOGLE_MAPS_API_KEY,
+      STRIPE_PUBLIC_KEY: process.env.STRIPE_PUBLIC_KEY,
     },
   },
   css: [

@@ -1,3 +1,4 @@
+// @ts-ignore
 import { Loader } from "@googlemaps/js-api-loader";
 
 function useGoogleMap(divId: string) {

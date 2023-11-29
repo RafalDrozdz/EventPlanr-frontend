@@ -20,6 +20,7 @@ const props = defineProps<Props>();
 <style scoped lang="scss">
 .events {
   display: flex;
+  flex-wrap: wrap;
   gap: var(--space-xxl);
 }
 </style>

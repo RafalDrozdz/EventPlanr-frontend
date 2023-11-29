@@ -25,16 +25,13 @@ import { LANGUAGES } from "~/constants";
 import type { Lang } from "~/types";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
-const { setLocale, setLocaleCookie, availableLocales } = useI18n();
-const langCookie = useCookie("i18n_redirected");
+const { setLocale, setLocaleCookie } = useI18n();
 
-const selectedLanguage = ref<Lang>((langCookie.value as Lang) ?? "en");
+const { locale } = useI18n();
 
-const checkIsLangSelected = (lang: Lang): boolean =>
-  selectedLanguage.value === lang;
+const checkIsLangSelected = (lang: Lang): boolean => locale.value === lang;
 
 const selectLang = (lang: Lang) => {
-  selectedLanguage.value = lang;
   setLocale(lang);
   setLocaleCookie(lang);
 };
