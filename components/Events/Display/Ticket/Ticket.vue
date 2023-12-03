@@ -1,9 +1,9 @@
 <template>
   <div class="ticket">
     <FontAwesomeIcon :icon="faTicket" />
-    <span>{{ ticket.title }}</span>
-    <span>{{ ticket.price }}{{ ticket.currency }}</span>
-    <QBtn color="primary">Wybierz</QBtn>
+    <span>{{ ticket.metadata.title }}</span>
+    <span>{{ ticket.metadata.price }}{{ ticket.metadata.currency }}</span>
+    <QBtn color="primary">{{ $t("buttons.select") }}</QBtn>
   </div>
 </template>
 

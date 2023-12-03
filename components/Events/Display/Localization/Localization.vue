@@ -16,10 +16,10 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { faLocationDot } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
-  placeName: string;
+  place_name: string;
   city: string;
   street: string;
-  streetNumber: string;
+  street_number: string;
   longitude: string;
   latitude: string;
 }
@@ -33,10 +33,10 @@ const { setMarker, load } = useGoogleMap("google-map");
 
 const text = computed(() => {
   const addressElements = [
-    props.placeName,
+    props.place_name,
     props.city,
     props.street,
-    props.streetNumber,
+    props.street_number,
   ];
   const address = addressElements.filter((item) => item != null);
   return address.join(" ");

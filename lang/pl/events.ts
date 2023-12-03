@@ -1,8 +1,8 @@
 export default {
   title: "Tytuł",
   description: "Opis",
-  startDate: "Data rozpoczęcia",
-  endDate: "Data zakończenia",
+  start_date: "Data rozpoczęcia",
+  end_date: "Data zakończenia",
   location: "Lokalizacja",
   tickets: "Bilety",
   free: "Bezpłatny",

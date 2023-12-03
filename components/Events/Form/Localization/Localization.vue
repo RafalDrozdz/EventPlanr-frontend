@@ -16,24 +16,24 @@
 <script setup lang="ts">
 interface Props {
   country: string;
-  streetNumber: string;
+  street_number: string;
   street: string;
   city: string;
-  placeId: string;
-  placeName: string;
-  postalCode: string;
+  place_id: string;
+  place_name: string;
+  postal_code: string;
   longitude: number | null;
   latitude: number | null;
 }
 
 type EmitString =
   | "update:country"
-  | "update:streetNumber"
+  | "update:street_number"
   | "update:street"
   | "update:city"
-  | "update:placeId"
-  | "update:placeName"
-  | "update:postalCode";
+  | "update:place_id"
+  | "update:place_name"
+  | "update:postal_code";
 
 type EmitNumber = "update:longitude" | "update:latitude";
 
@@ -51,12 +51,12 @@ const vModels = useVModels(props, emit);
 
 const {
   country,
-  streetNumber,
+  street_number,
   street,
   city,
-  placeId,
-  placeName,
-  postalCode,
+  place_id,
+  place_name,
+  postal_code,
   longitude,
   latitude,
 } = useGoogleLocalizationInput("google-address-autocomplete");
@@ -70,33 +70,33 @@ watch([longitude, latitude], ([longitude, latitude]) => {
 watch(
   [
     country,
-    streetNumber,
+    street_number,
     street,
     city,
-    placeId,
-    placeName,
-    postalCode,
+    place_id,
+    place_name,
+    postal_code,
     longitude,
     latitude,
   ],
   ([
     country,
-    streetNumber,
+    street_number,
     street,
     city,
-    placeId,
-    placeName,
-    postalCode,
+    place_id,
+    place_name,
+    postal_code,
     longitude,
     latitude,
   ]) => {
     vModels.country.value = country;
-    vModels.streetNumber.value = streetNumber;
+    vModels.street_number.value = street_number;
     vModels.street.value = street;
     vModels.city.value = city;
-    vModels.placeId.value = placeId ?? "";
-    vModels.placeName.value = placeName ?? "";
-    vModels.postalCode.value = postalCode;
+    vModels.place_id.value = place_id ?? "";
+    vModels.place_name.value = place_name ?? "";
+    vModels.postal_code.value = postal_code;
     vModels.longitude.value = longitude;
     vModels.latitude.value = latitude;
   }

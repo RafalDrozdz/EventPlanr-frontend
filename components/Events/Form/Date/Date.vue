@@ -3,13 +3,13 @@
     <BaseInputDate
       v-if="dateFrom"
       v-model="dateFrom"
-      :label="$t('events.startDate')"
+      :label="$t('events.start_date')"
     />
     <FontAwesomeIcon :icon="faArrowRight" />
     <BaseInputDate
       v-if="dateTo"
       v-model="dateTo"
-      :label="$t('events.endDate')"
+      :label="$t('events.end_date')"
     />
   </div>
 </template>

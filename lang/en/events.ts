@@ -1,8 +1,8 @@
 export default {
   title: "Title",
   description: "Description",
-  startDate: "Start date",
-  endDate: "End date",
+  start_date: "Start date",
+  end_date: "End date",
   location: "Location",
   tickets: "Tickets",
   free: "Free",

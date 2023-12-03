@@ -3,7 +3,7 @@
     <div class="event__image" />
     <div class="event__content">
       <h2 class="event__title">{{ event.title }}</h2>
-      <span class="event__date">{{ startDate }}</span>
+      <span class="event__date">{{ start_date }}</span>
       <span>{{ event.place_name }}</span>
     </div>
   </NuxtLink>
@@ -21,7 +21,7 @@ const props = defineProps<Props>();
 
 const { locale } = useI18n();
 const path = `/events/${props.event.id}`;
-const startDate = ISODateToText(props.event.start_date, locale.value);
+const start_date = ISODateToText(props.event.start_date, locale.value);
 </script>
 
 <style scoped lang="scss">

@@ -19,7 +19,9 @@ const { t } = useI18n();
 
 const text = computed(() =>
   props.ticket
-    ? `${t("events.from")} ${props.ticket.price}${props.ticket.currency}`
+    ? `${t("events.from")} ${props.ticket.metadata.price}${
+        props.ticket.metadata.currency
+      }`
     : t("events.free")
 );
 </script>

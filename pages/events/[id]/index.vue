@@ -21,8 +21,10 @@
         :longitude="data?.longitude"
         :latitude="data?.latitude"
       />
-      <EventsDisplayPrice :ticket="data?.cheapest_ticket" />
-      <QBtn v-if="!isFree" color="primary" class="event__order">Zamawiam</QBtn>
+      <EventsDisplayPrice :ticket="data?.tickets?.[0]" />
+      <QBtn v-if="!isFree" color="primary" class="event__order">
+        {{ $t("buttons.order") }}
+      </QBtn>
     </div>
     <EventsDisplayDescription :text="data?.description" />
     <EventsDisplayTickets v-if="!isFree" :tickets="data?.tickets" />

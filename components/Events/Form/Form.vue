@@ -10,16 +10,16 @@
     <EventsFormBackground>
       <EventsFormTitle v-model="title" />
     </EventsFormBackground>
-    <EventsFormDate v-model:date-from="startDate" v-model:date-to="endDate" />
+    <EventsFormDate v-model:date-from="start_date" v-model:date-to="end_date" />
     <EventsFormDescription v-model="description" />
     <EventsFormLocalization
       v-model:city="city"
       v-model:street="street"
-      v-model:street-number="streetNumber"
-      v-model:postal-code="postalCode"
+      v-model:street-number="street_number"
+      v-model:postal-code="postal_code"
       v-model:country="country"
-      v-model:place-id="placeId"
-      v-model:place-name="placeName"
+      v-model:place-id="place_id"
+      v-model:place-name="place_name"
       v-model:longitude="longitude"
       v-model:latitude="latitude"
     />
@@ -53,15 +53,15 @@ const props = withDefaults(defineProps<Props>(), {
     return {
       title: "",
       description: "",
-      startDate: initialFromDate,
-      endDate: initialToDate,
+      start_date: initialFromDate,
+      end_date: initialToDate,
       city: "",
       street: "",
-      streetNumber: "",
-      postalCode: "",
+      street_number: "",
+      postal_code: "",
       country: "",
-      placeId: "",
-      placeName: "",
+      place_id: "",
+      place_name: "",
       longitude: null,
       latitude: null,
       tickets: [],
@@ -72,15 +72,15 @@ const props = withDefaults(defineProps<Props>(), {
 const {
   title,
   description,
-  startDate,
-  endDate,
+  start_date,
+  end_date,
   city,
   street,
-  streetNumber,
-  postalCode,
+  street_number,
+  postal_code,
   country,
-  placeId,
-  placeName,
+  place_id,
+  place_name,
   longitude,
   latitude,
   tickets,

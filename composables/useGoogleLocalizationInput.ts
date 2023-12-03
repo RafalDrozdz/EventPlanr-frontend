@@ -1,11 +1,11 @@
 interface State {
   city: string;
   street: string;
-  streetNumber: string;
-  postalCode: string;
+  street_number: string;
+  postal_code: string;
   country: string;
-  placeId: string | undefined;
-  placeName: string | undefined;
+  place_id: string | undefined;
+  place_name: string | undefined;
   longitude: number | null;
   latitude: number | null;
 }
@@ -14,11 +14,11 @@ function useGoogleLocalizationInput(inputId: string) {
   const state = reactive<State>({
     city: "",
     street: "",
-    streetNumber: "",
-    postalCode: "",
+    street_number: "",
+    postal_code: "",
     country: "",
-    placeId: "",
-    placeName: "",
+    place_id: "",
+    place_name: "",
     longitude: null,
     latitude: null,
   });
@@ -39,7 +39,7 @@ function useGoogleLocalizationInput(inputId: string) {
         item.types.forEach((type) => {
           switch (type) {
             case "street_number":
-              state.streetNumber = item.long_name;
+              state.street_number = item.long_name;
               break;
             case "route":
               state.street = item.long_name;
@@ -48,7 +48,7 @@ function useGoogleLocalizationInput(inputId: string) {
               state.city = item.long_name;
               break;
             case "postal_code":
-              state.postalCode = item.long_name;
+              state.postal_code = item.long_name;
               break;
             case "country":
               state.country = item.long_name;
@@ -58,8 +58,8 @@ function useGoogleLocalizationInput(inputId: string) {
       });
       state.latitude = place.geometry?.location?.lat() ?? null;
       state.longitude = place.geometry?.location?.lng() ?? null;
-      state.placeId = place.place_id;
-      state.placeName = place.name;
+      state.place_id = place.place_id;
+      state.place_name = place.name;
     });
   });
 
