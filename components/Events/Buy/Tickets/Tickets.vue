@@ -6,6 +6,7 @@
         v-for="ticket in tickets"
         :key="ticket.id"
         :ticket="ticket"
+        v-model="ticket.quantity"
       />
     </ul>
   </div>
@@ -13,12 +14,23 @@
 
 <script setup lang="ts">
 import type { Ticket } from "~/schemas";
+import Stripe from "stripe";
 
 interface Props {
-  tickets: Ticket[];
+  modelValue: (Ticket & { quantity: number })[];
+}
+
+interface Emits {
+  (
+    emit: "update:modelValue",
+    value: Stripe.PaymentLinkCreateParams.LineItem[]
+  ): void;
 }
 
 const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+
+const tickets = useVModel(props, "modelValue", emit);
 </script>
 
 <style scoped lang="scss">

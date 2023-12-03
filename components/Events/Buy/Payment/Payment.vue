@@ -1,5 +1,5 @@
 <template>
-  {{ STRIPE_PUBLIC_KEY }}
+  <!--  {{ STRIPE_PUBLIC_KEY }}-->
 </template>
 
 <script setup lang="ts">

@@ -1,11 +1,15 @@
 <template>
   <li class="ticket">
-    <h4 class="ticket__title">{{ ticket.title }}</h4>
+    <h4 class="ticket__title">{{ ticket.metadata.title }}</h4>
 
     <div>
-      <QBtn><FontAwesomeIcon :icon="faMinus" /></QBtn>
-      {{}}
-      <QBtn><FontAwesomeIcon :icon="faPlus" /></QBtn>
+      <QBtn @click="sub">
+        <FontAwesomeIcon :icon="faMinus" />
+      </QBtn>
+      {{ quantity }}
+      <QBtn @click="add">
+        <FontAwesomeIcon :icon="faPlus" />
+      </QBtn>
     </div>
   </li>
 </template>
@@ -17,9 +21,19 @@ import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 
 interface Props {
   ticket: Ticket;
+  modelValue: number;
+}
+
+interface Emits {
+  (emit: "update:modelValue", value: number): void;
 }
 
 const props = defineProps<Props>();
+const emit = defineEmits<Emits>();
+const quantity = useVModel(props, "modelValue", emit);
+
+const add = () => quantity.value++;
+const sub = () => quantity.value > 0 && quantity.value--;
 </script>
 
 <style scoped lang="scss">
