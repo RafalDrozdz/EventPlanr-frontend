@@ -22,7 +22,12 @@
         :latitude="data?.latitude"
       />
       <EventsDisplayPrice :ticket="data?.tickets?.[0]" />
-      <QBtn v-if="!isFree" color="primary" class="event__order">
+      <QBtn
+        v-if="!isFree"
+        color="primary"
+        class="event__order"
+        @click="goToPayment"
+      >
         {{ $t("buttons.order") }}
       </QBtn>
     </div>
@@ -37,6 +42,7 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import type { EventForm } from "~/schemas/event.schema";
 
 const route = useRoute();
+const router = useRouter();
 
 const id = computed(() => route.params.id);
 const isSuccessfullyCreated = computed(() => route.query.success === "true");
@@ -48,6 +54,9 @@ const isFree = computed(() => !data.value?.tickets.length);
 const { data, error } = await useFetch<EventForm>(`/api/event/${id.value}`, {
   headers,
 });
+
+const goToPayment = () =>
+  router.push(`${route.path}/buy?ticket=${data.value?.tickets[0]?.id}`);
 </script>
 
 <style scoped lang="scss">

@@ -3,7 +3,7 @@
     <FontAwesomeIcon :icon="faTicket" />
     <span>{{ ticket.metadata.title }}</span>
     <span>{{ ticket.metadata.price }}{{ ticket.metadata.currency }}</span>
-    <QBtn color="primary">{{ $t("buttons.select") }}</QBtn>
+    <QBtn color="primary" @click="goToPayment">{{ $t("buttons.select") }}</QBtn>
   </div>
 </template>
 
@@ -17,6 +17,11 @@ interface Props {
 }
 
 const props = defineProps<Props>();
+
+const route = useRoute();
+const router = useRouter();
+const goToPayment = () =>
+  router.push(`${route.path}/buy?ticket=${props.ticket.id}`);
 </script>
 
 <style scoped lang="scss">

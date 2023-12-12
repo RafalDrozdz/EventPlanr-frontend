@@ -35,11 +35,14 @@ const tickets = useVModel(props, "modelValue", emit);
 
 <style scoped lang="scss">
 .tickets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-m);
   &__list {
     display: flex;
     flex-direction: column;
     gap: var(--space-m);
-    padding: var(--space-xl);
+    padding: 0;
     list-style: none;
   }
 }
