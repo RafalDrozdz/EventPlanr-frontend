@@ -15,11 +15,17 @@ function usePayment() {
 
   const { $api } = useNuxtApp();
 
-  const redirect = async (body: Stripe.PaymentLinkCreateParams.LineItem[]) => {
+  const redirect = async (
+    event_id: number,
+    line_items: Stripe.PaymentLinkCreateParams.LineItem[]
+  ) => {
     try {
       state.isLoading = true;
       state.error = null;
-      const { data } = await $api.post(`/payments/buy`, body);
+      const { data } = await $api.post(`/payments/buy`, {
+        event_id,
+        line_items,
+      });
       state.url = data;
       window.open(data, "_self");
     } catch (error) {

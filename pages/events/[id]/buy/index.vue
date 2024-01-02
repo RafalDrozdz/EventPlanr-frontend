@@ -5,10 +5,10 @@
     <EventsBuyConsents v-model="regulations" />
     <EventsBuyPayment />
     <QBtn
-      size="24px"
+      size="1.5rem"
       color="primary"
       :loading="isLoading"
-      @click="redirect(listItems)"
+      @click="redirect(+id, listItems)"
       :disable="isDisabled"
     >
       Zamawiam i Płacę
